@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#15251e" />
+<title>AERIS — Outdoor Weather Check</title>
+<style>
+  :root{--bg:#f5f4ef;--paper:#fffdf8;--ink:#1e2925;--muted:#6c756f;--line:#e1e2da;--green:#193b2c;--green2:#315d45;--olive:#737448;--amber:#a66b22;--red:#873c38;--shadow:0 12px 35px rgba(27,42,34,.10)}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Apple SD Gothic Neo","Noto Sans KR",sans-serif;letter-spacing:-.02em}.app{max-width:520px;margin:0 auto;min-height:100svh;padding:calc(18px + env(safe-area-inset-top)) 20px calc(22px + env(safe-area-inset-bottom));display:flex;flex-direction:column}.brand{font-size:12px;font-weight:800;letter-spacing:.23em;color:var(--green);margin:2px 0 18px}.eyebrow{font-size:12px;letter-spacing:.1em;font-weight:750;color:var(--muted);text-transform:uppercase;margin:4px 0 7px}.title{font-size:34px;line-height:1.13;margin:0 0 10px;letter-spacing:-.05em}.sub{color:var(--muted);font-size:15px;line-height:1.55;margin:0}.screen{display:none;animation:in .25s ease}.screen.active{display:flex;flex:1;flex-direction:column}@keyframes in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}.spacer{flex:1}.activity-grid{display:grid;gap:12px;margin-top:30px}.activity{border:0;text-align:left;color:#fff;border-radius:22px;padding:24px 22px;min-height:130px;box-shadow:var(--shadow);cursor:pointer;transition:.18s}.activity:active,.btn:active,.quick:active{transform:scale(.985)}.activity.golf{background:linear-gradient(135deg,#15382a,#487256)}.activity.camp{background:linear-gradient(135deg,#47533a,#8a7850)}.activity .icon{font-size:28px;display:block;margin-bottom:11px}.activity strong{font-size:22px;letter-spacing:.04em}.activity span{font-size:14px;opacity:.78;display:block;margin-top:5px}.footer-note{text-align:center;color:#8a928d;font-size:12px;margin-top:22px}.back{background:transparent;border:0;padding:5px 0 14px;color:var(--green);font:inherit;font-weight:700;cursor:pointer;text-align:left;font-size:14px}.place-list{display:grid;gap:10px;margin-top:25px}.place{width:100%;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:16px;text-align:left;cursor:pointer;color:var(--ink);display:flex;justify-content:space-between;align-items:center}.place:hover{border-color:#a9b8ac}.place .type{font-size:11px;color:var(--green2);font-weight:800;letter-spacing:.08em;margin-bottom:4px}.place strong{font-size:16px}.place .arrow{font-size:24px;color:#88928b}.add{border-style:dashed;background:transparent;color:var(--green);font-weight:700}.label{display:block;font-size:13px;font-weight:800;margin:22px 0 8px}.input{width:100%;border:1px solid var(--line);border-radius:14px;background:var(--paper);font:inherit;padding:15px;color:var(--ink);font-size:16px}.input:focus{outline:2px solid #b9caba;border-color:transparent}.quick-row{display:flex;gap:8px;margin-top:9px}.quick{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:10px 13px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer}.quick.selected{color:#fff;background:var(--green);border-color:var(--green)}.btn{border:0;border-radius:16px;background:var(--green);color:white;font:inherit;font-weight:800;letter-spacing:.02em;padding:17px;width:100%;cursor:pointer;margin-top:26px;box-shadow:var(--shadow)}.hint{font-size:12px;line-height:1.45;color:var(--muted);margin:10px 1px 0}.result-head{margin-bottom:19px}.card{border-radius:26px;padding:25px 23px;color:#fff;box-shadow:var(--shadow);position:relative;overflow:hidden}.card::after{content:"";position:absolute;width:230px;height:230px;border:1px solid rgba(255,255,255,.15);border-radius:50%;right:-95px;top:-105px}.card.fair{background:linear-gradient(150deg,#173d2d,#477354)}.card.watch{background:linear-gradient(150deg,#6e532c,#b47b29)}.card.hold{background:linear-gradient(150deg,#592e32,#93494a)}.status-en{font-size:12px;letter-spacing:.20em;font-weight:800;opacity:.82}.status-ko{font-size:34px;font-weight:850;letter-spacing:-.06em;margin-top:5px}.wind{margin:30px 0 9px;font-size:43px;font-weight:800;letter-spacing:-.07em}.wind small{font-size:19px;letter-spacing:-.02em;font-weight:650}.wind-note{font-size:14px;opacity:.8}.details{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:23px}.detail{border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.09);padding:12px;border-radius:14px}.detail span{font-size:11px;opacity:.7;display:block;margin-bottom:4px}.detail strong{font-size:16px}.message{border-top:1px solid rgba(255,255,255,.2);margin-top:20px;padding-top:18px;line-height:1.5;font-size:15px}.explain{background:var(--paper);border:1px solid var(--line);border-radius:18px;margin-top:14px;padding:16px}.explain strong{font-size:14px}.explain p{font-size:13px;color:var(--muted);line-height:1.55;margin:7px 0 0}.mini-title{font-size:14px;font-weight:800;margin:22px 0 9px}.hours{display:grid;gap:7px}.hour{display:grid;grid-template-columns:48px 1fr auto;align-items:center;padding:12px 1px;border-bottom:1px solid var(--line);font-size:13px}.hour span{color:var(--muted)}.hour b{font-size:14px}.hidden{display:none!important}.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#202b26;color:#fff;padding:12px 15px;border-radius:999px;font-size:13px;box-shadow:var(--shadow);z-index:9;white-space:nowrap}.saved{font-size:13px;color:var(--muted);margin-top:18px}.saved button{border:0;background:none;color:var(--green);font:inherit;font-weight:800;padding:0;cursor:pointer}
+</style>
+</head>
+<body>
+<main class="app">
+  <section id="home" class="screen active">
+    <div class="brand">AERIS</div>
+    <div class="spacer"></div>
+    <p class="eyebrow">Outdoor weather check</p>
+    <h1 class="title">Choose your field.</h1>
+    <p class="sub">약속이 잡힌 날, 바람부터 확인하세요.</p>
+    <div class="activity-grid">
+      <button class="activity golf" onclick="chooseActivity('golf')"><span class="icon">⛳</span><strong>GOLF</strong><span>A fair wind for your round.</span></button>
+      <button class="activity camp" onclick="chooseActivity('camp')"><span class="icon">⛺</span><strong>CAMP</strong><span>A calm sky for your stay.</span></button>
+    </div>
+    <div class="spacer"></div>
+    <p class="footer-note">Choose the plan. Read the wind.</p>
+  </section>
+
+  <section id="places" class="screen">
+    <button class="back" onclick="go('home')">‹ Back</button>
+    <div class="brand">AERIS / <span id="activityLabel">GOLF</span></div>
+    <p class="eyebrow">Where are you going?</p>
+    <h1 class="title">장소를 고르세요.</h1>
+    <p class="sub">처음 한 번 저장하면 다음부터는 탭 한 번입니다.</p>
+    <div id="placeList" class="place-list"></div>
+    <p class="saved">장소는 이 기기의 브라우저에만 저장됩니다.</p>
+  </section>
+
+  <section id="schedule" class="screen">
+    <button class="back" onclick="go('places')">‹ 장소 다시 고르기</button>
+    <div class="brand">AERIS / <span id="scheduleActivity">GOLF</span></div>
+    <p class="eyebrow" id="selectedPlaceText">PLACE</p>
+    <h1 class="title">언제 가시나요?</h1>
+    <label class="label">날짜</label>
+    <input id="dateInput" class="input" type="date" />
+    <div class="quick-row"><button class="quick" onclick="setDate(0,this)">오늘</button><button class="quick" onclick="setDate(1,this)">내일</button><button class="quick" onclick="setWeekend(this)">이번 주말</button></div>
+    <label class="label" id="timeLabel">티오프 시간</label>
+    <input id="timeInput" class="input" type="time" />
+    <p id="timeHint" class="hint"></p>
+    <div class="spacer"></div>
+    <button class="btn" onclick="checkWeather()">CHECK THE WIND</button>
+  </section>
+
+  <section id="result" class="screen">
+    <button class="back" onclick="go('schedule')">‹ 일정 바꾸기</button>
+    <div class="brand">AERIS / <span id="resultActivity">GOLF</span></div>
+    <div class="result-head"><p id="resultDate" class="eyebrow">DATE · PLACE</p><h1 class="title">Your field, read.</h1></div>
+    <article id="statusCard" class="card fair">
+      <div id="statusEn" class="status-en">FAIR</div>
+      <div id="statusKo" class="status-ko">적정</div>
+      <div id="windDisplay" class="wind">↗ 3.2 <small>m/s</small></div>
+      <div id="windNote" class="wind-note">Gentle west wind</div>
+      <div class="details"><div class="detail"><span>기온</span><strong id="tempDisplay">18–24°C</strong></div><div class="detail"><span>강수</span><strong id="rainDisplay">☂ 10%</strong></div></div>
+      <div id="message" class="message">바람이 계획을 방해하지 않습니다.</div>
+    </article>
+    <article class="explain"><strong id="reasonTitle">왜 적정인가요?</strong><p id="reasonText">활동 시간대에 강한 돌풍과 의미 있는 강수가 예상되지 않습니다.</p></article>
+    <h2 class="mini-title">활동 시간대</h2>
+    <div id="hours" class="hours"></div>
+    <button class="btn" onclick="go('home')">NEW CHECK</button>
+  </section>
+
+  <section id="add" class="screen">
+    <button class="back" onclick="go('places')">‹ 장소 목록</button>
+    <div class="brand">AERIS / ADD PLACE</div>
+    <p class="eyebrow">One time only</p>
+    <h1 class="title">장소를 저장하세요.</h1>
+    <p class="sub">현재 버전은 좌표를 직접 입력합니다. 지도 앱에서 장소를 찾은 뒤 좌표를 붙여 넣으셔도 됩니다.</p>
+    <label class="label">장소 이름</label><input id="placeName" class="input" placeholder="예: ○○ Country Club" />
+    <label class="label">위도</label><input id="lat" class="input" inputmode="decimal" placeholder="예: 37.5665" />
+    <label class="label">경도</label><input id="lon" class="input" inputmode="decimal" placeholder="예: 126.9780" />
+    <div class="spacer"></div><button class="btn" onclick="savePlace()">SAVE PLACE</button>
+  </section>
+</main>
+<div id="toast" class="toast hidden"></div>
+<script>
+const state={activity:'golf',place:null};
+const defaults={golf:[{name:'Sample Country Club',lat:37.444,lng:127.079,type:'golf'}],camp:[{name:'Sample Campsite',lat:37.832,lng:127.511,type:'camp'}]};
+function $(id){return document.getElementById(id)}
+function go(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');window.scrollTo({top:0,behavior:'instant'});if(id==='places') renderPlaces();}
+function chooseActivity(a){state.activity=a;$('activityLabel').textContent=a.toUpperCase();go('places')}
+function key(){return 'aeris-places-'+state.activity}
+function getPlaces(){try{return JSON.parse(localStorage.getItem(key()))||defaults[state.activity]}catch{return defaults[state.activity]}}
+function renderPlaces(){const list=$('placeList');list.innerHTML='';getPlaces().forEach((p,i)=>{const b=document.createElement('button');b.className='place';b.innerHTML=`<div><div class="type">${state.activity.toUpperCase()}</div><strong>${p.name}</strong></div><span class="arrow">›</span>`;b.onclick=()=>selectPlace(p);list.appendChild(b)});const a=document.createElement('button');a.className='place add';a.textContent='+ 새 장소 등록';a.onclick=()=>go('add');list.appendChild(a)}
+function selectPlace(p){state.place=p;$('scheduleActivity').textContent=state.activity.toUpperCase();$('selectedPlaceText').textContent=p.name;$('timeLabel').textContent=state.activity==='golf'?'티오프 시간':'입실·설치 시작';$('timeHint').textContent=state.activity==='golf'?'기본 평가 시간은 티오프부터 약 5시간 30분입니다.':'설치 시작부터 다음 날 오전까지의 바람과 비를 확인합니다.';$('timeInput').value=state.activity==='golf'?'07:30':'14:00';setDate(0);go('schedule')}
+function iso(d){return d.toISOString().slice(0,10)}
+function setDate(n,el){const d=new Date();d.setDate(d.getDate()+n);$('dateInput').value=iso(d);document.querySelectorAll('.quick').forEach(b=>b.classList.remove('selected'));if(el)el.classList.add('selected')}
+function setWeekend(el){const d=new Date();const day=d.getDay();const add=day===6?0:(6-day+7)%7;d.setDate(d.getDate()+add);$('dateInput').value=iso(d);document.querySelectorAll('.quick').forEach(b=>b.classList.remove('selected'));el.classList.add('selected')}
+function savePlace(){const name=$('placeName').value.trim(),lat=parseFloat($('lat').value),lng=parseFloat($('lon').value);if(!name||Number.isNaN(lat)||Number.isNaN(lng)){toast('장소 이름과 위도·경도를 입력해 주세요.');return}const arr=getPlaces();arr.push({name,lat,lng,type:state.activity});localStorage.setItem(key(),JSON.stringify(arr));$('placeName').value=$('lat').value=$('lon').value='';toast('장소를 저장했습니다.');setTimeout(()=>go('places'),450)}
+function verdict(activity,wind,gust,rain){let status='fair';if(activity==='golf'){if(gust>=12||wind>7||rain>=3)status='hold';else if(gust>=7||wind>4||rain>=1)status='watch'}else{if(gust>=14||wind>7||rain>=5)status='hold';else if(gust>=8||wind>4||rain>=1)status='watch'}return status}
+function localSample(){const seed=Math.abs(Math.round((state.place.lat*100+state.place.lng*10)+new Date($('dateInput').value).getDate()));const r=seed%3;return r===0?{wind:3.2,gust:5.8,rain:0,tempMin:18,tempMax:24,prob:10,dir:'서풍'}:r===1?{wind:5.8,gust:10.4,rain:1.4,tempMin:15,tempMax:21,prob:35,dir:'북서풍'}:{wind:8.1,gust:14.2,rain:4.2,tempMin:13,tempMax:19,prob:70,dir:'남서풍'}}
+async function checkWeather(){const date=$('dateInput').value;if(!date){toast('날짜를 선택해 주세요.');return}$('resultDate').textContent=`${date.replaceAll('-','.')} · ${state.place.name}`;$('resultActivity').textContent=state.activity.toUpperCase();toast('바람을 읽고 있습니다…');try{const url=`https://api.open-meteo.com/v1/forecast?latitude=${state.place.lat}&longitude=${state.place.lng}&hourly=temperature_2m,precipitation,precipitation_probability,wind_speed_10m,wind_gusts_10m,wind_direction_10m&timezone=auto&forecast_days=16`;const res=await fetch(url);if(!res.ok)throw new Error();const data=await res.json();renderRealWeather(data,date)}catch(e){renderSample();toast('연결이 어려워 예시 결과를 표시했습니다.')}go('result')}
+function renderRealWeather(data,date){const h=data.hourly;const start=state.activity==='golf'?Number($('timeInput').value.split(':')[0]):Number($('timeInput').value.split(':')[0]);const span=state.activity==='golf'?6:6;const rows=[];for(let i=0;i<h.time.length;i++){if(h.time[i].startsWith(date+'T')){const hour=Number(h.time[i].slice(11,13));if(hour>=start&&hour<start+span)rows.push({time:h.time[i].slice(11,16),temp:h.temperature_2m[i],rain:h.precipitation[i],prob:h.precipitation_probability[i]??0,wind:h.wind_speed_10m[i],gust:h.wind_gusts_10m[i],dir:direction(h.wind_direction_10m[i])})}}if(!rows.length){renderSample();return}const avg=rows.reduce((s,x)=>s+x.wind,0)/rows.length,gust=Math.max(...rows.map(x=>x.gust)),rain=Math.max(...rows.map(x=>x.rain)),prob=Math.max(...rows.map(x=>x.prob)),min=Math.round(Math.min(...rows.map(x=>x.temp))),max=Math.round(Math.max(...rows.map(x=>x.temp)));renderCard({wind:avg,gust,rain,tempMin:min,tempMax:max,prob,dir:rows[Math.floor(rows.length/2)].dir},rows)}
+function direction(d){const a=['북','북동','동','남동','남','남서','서','북서'];return a[Math.round((d%360)/45)%8]+'풍'}
+function renderSample(){const x=localSample();const rows=Array.from({length:6},(_,i)=>({time:String((Number($('timeInput').value.split(':')[0])+i)%24).padStart(2,'0')+':00',temp:x.tempMin+i,wind:Math.max(1,x.wind+(i-2)*.45),gust:x.gust+(i%2),rain:i===3?x.rain:0,prob:x.prob,dir:x.dir}));renderCard(x,rows)}
+function renderCard(x,rows){const s=verdict(state.activity,x.wind,x.gust,x.rain);const copy={fair:{en:'FAIR',ko:'적정',note:'Gentle, manageable wind',msg:state.activity==='golf'?'바람이 계획을 방해하지 않습니다.':'사이트 세팅과 휴식에 좋은 조건입니다.',reason:'활동 시간대에 강한 돌풍과 의미 있는 강수가 예상되지 않습니다.'},watch:{en:'WATCH',ko:'불안',note:'Wind deserves attention',msg:state.activity==='golf'?'가능하지만, 바람을 플레이에 넣으셔야 합니다.':'가능하지만, 타프와 가이라인을 먼저 점검하세요.',reason:'바람 또는 약한 비가 활동 품질에 영향을 줄 수 있습니다. 출발 전 다시 확인하세요.'},hold:{en:'HOLD',ko:'불가',note:'Strong wind or rain risk',msg:state.activity==='golf'?'오늘은 라운드보다 안전 확인이 먼저입니다.':'설치보다 철수·대피 계획을 우선하세요.',reason:'강한 돌풍 또는 의미 있는 비가 예측됩니다. 일정 변경을 검토하세요.'}}[s];const card=$('statusCard');card.className='card '+s;$('statusEn').textContent=copy.en;$('statusKo').textContent=copy.ko;$('windDisplay').innerHTML=`↗ ${x.gust.toFixed(1)} <small>m/s</small>`;$('windNote').textContent=`${x.dir} · 평균 ${x.wind.toFixed(1)} m/s · 돌풍 기준`;$('tempDisplay').textContent=`${x.tempMin}–${x.tempMax}°C`;$('rainDisplay').textContent=`☂ ${Math.round(x.prob)}%`;$('message').textContent=copy.msg;$('reasonTitle').textContent='왜 '+copy.ko+'인가요?';$('reasonText').textContent=copy.reason;$('hours').innerHTML=rows.map(r=>`<div class="hour"><span>${r.time}</span><b>${Math.round(r.temp)}°C · ${r.dir}</b><span>↗ ${r.wind.toFixed(1)} / G ${r.gust.toFixed(1)}</span></div>`).join('')}
+function toast(text){const t=$('toast');t.textContent=text;t.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.add('hidden'),1800)}
+setDate(0);
+</script>
+</body>
+</html>
