@@ -22,7 +22,7 @@
 <script>
 const WORKER_URL='https://aeris-place-search.forefore.workers.dev/search';
 const state={activity:'golf',place:null,forecast:null,date:null};
-const defaults={golf:[{name:'Sample Country Club',lat:37.444,lng:127.079,default:true}],camp:[{name:'Sample Campsite',lat:37.832,lng:127.511,default:true}]};
+const defaults={golf:[],camp:[]};
 const $=id=>document.getElementById(id);
 function go(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');window.scrollTo(0,0);if(id==='places')renderPlaces()}
 function toast(t){const x=$('toast');x.textContent=t;x.classList.remove('hidden');clearTimeout(window._t);window._t=setTimeout(()=>x.classList.add('hidden'),2000)}
